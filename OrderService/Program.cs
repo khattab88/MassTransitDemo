@@ -35,22 +35,22 @@ namespace OrderService
 
             #region basic setup for Masstransit/RabbitMQ
 
-            var bus = Bus.Factory.CreateUsingRabbitMq(config =>
-            {
-                config.Host("amqp://guest:guest@localhost:5672");
+            //var bus = Bus.Factory.CreateUsingRabbitMq(config =>
+            //{
+            //    config.Host("amqp://guest:guest@localhost:5672");
 
-                config.ReceiveEndpoint("temp-queue", endpoint =>
-                {
-                    endpoint.Handler<Order>(ctx =>
-                    {
-                        return Console.Out.WriteLineAsync(ctx.Message.Name);
-                    });
-                });
-            });
+            //    config.ReceiveEndpoint("temp-queue", endpoint =>
+            //    {
+            //        endpoint.Handler<Order>(ctx =>
+            //        {
+            //            return Console.Out.WriteLineAsync(ctx.Message.Name);
+            //        });
+            //    });
+            //});
 
-            bus.Start();
+            //bus.Start();
 
-            bus.Publish(new Order { Name = "test order" });
+            //bus.Publish(new Order { Name = "test order" });
 
             #endregion
 
